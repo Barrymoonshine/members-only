@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs')%>
+  <body>
+    <%- include('../partials/header.ejs')%>
+    <div>
+      <h4>Become a member today!</h4>
+      <form class="sign-up-form">
+        <label for="name">First name</label>
+        <input type="text" name="firstName" required />
+        <div class="first-name errors"></div>
+        <label for="name">Last name</label>
+        <input type="text" name="lastName" required />
+        <div class="second-name errors"></div>
+        <label for="name">Username</label>
+        <input type="text" name="username" required />
+        <div class="username errors"></div>
+        <label for="name">Password</label>
+        <input type="password" name="password" required />
+        <label for="admin">Admin</label>
+        <input type="checkbox" name="admin" checked="true" />
+        <button>Submit</button>
+      </form>
+    </div>
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

@@ -1,6 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
 import mongoose from 'mongoose';
+import usersRoutes from './routes/usersRoutes.js';
 
 const app = express();
 
@@ -21,6 +22,7 @@ connectToDb();
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
+app.use('/users', usersRoutes);
 
 app.get('/', (req, res) => {
   res.render('home');
