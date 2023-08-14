@@ -27,5 +27,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', { script: null });
 });

@@ -3,7 +3,7 @@ import User from '../models/user.js';
 
 const user_get_sign_up = async (req, res) => {
   try {
-    res.render('user/sign-up', {});
+    res.render('user/sign-up', { script: 'sign-up' });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
   }

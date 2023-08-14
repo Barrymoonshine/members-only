@@ -13,13 +13,11 @@ signUpForm.addEventListener('submit', async (e) => {
       const formValues = {};
 
       Array.from(signUpForm.elements).forEach((el) => {
-        // Ensure no null values are added to the formValues object
+        // Ensures no null values are added to the formValues object
         if (el.getAttribute('name')) {
           formValues[el.getAttribute('name')] = el.value;
         }
       });
-
-      console.log('formValues', formValues);
 
       const response = await fetch('/user/sign-up', {
         method: 'POST',
