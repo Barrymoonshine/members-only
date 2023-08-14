@@ -9,6 +9,14 @@ const user_get_sign_up = async (req, res) => {
   }
 };
 
+const user_get_log_in = async (req, res) => {
+  try {
+    res.render('user/log-in', { script: null });
+  } catch (err) {
+    console.log(`Mongoose find error: ${err}`);
+  }
+};
+
 const user_post = async (req, res) => {
   try {
     const isAdmin = req.body.isAdmin === 'on';
@@ -29,4 +37,4 @@ const user_post = async (req, res) => {
   }
 };
 
-export { user_get_sign_up, user_post };
+export { user_get_sign_up, user_get_log_in, user_post };
