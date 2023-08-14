@@ -1,3 +1,7 @@
 h4 {
-  color: red;
+  color: purple;
+}
+
+.errors {
+  color: #dc2626;
 }

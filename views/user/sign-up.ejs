@@ -8,19 +8,33 @@
       <form action="/user/sign-up" method="post" class="sign-up-form">
         <label for="name">First name</label>
         <input type="text" name="firstName" required />
-        <div class="first-name errors"></div>
+        <div class="first-name-error errors"></div>
         <label for="name">Last name</label>
         <input type="text" name="lastName" required />
-        <div class="second-name errors"></div>
+        <div class="second-name-error errors"></div>
         <label for="name">Username</label>
         <input type="text" name="username" required />
-        <div class="username errors"></div>
+        <div class="username-error errors"></div>
         <label for="name">Password</label>
-        <input type="password" name="password" required />
-        <div class="password errors"></div>
+        <input
+          type="password"
+          name="password"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$"
+          title="Please enter a password that is between 8 and 20 characters long and contains at least one number, one capital letter and one special symbol(!@#$%^&*=+-_)"
+          id="password"
+          required
+        />
+        <div class="password-error errors"></div>
         <label for="name">Confirm password</label>
-        <input type="password" name="confirmPassword" required />
-        <div class="confirm-password errors"></div>
+        <input
+          type="password"
+          name="confirmPassword"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$"
+          title="Please enter a password that is between 8 and 20 characters long and contains at least one number, one capital letter and one special symbol(!@#$%^&*=+-_)"
+          id="confirm-password"
+          required
+        />
+        <div class="confirm-password-error errors"></div>
         <label for="admin">Admin</label>
         <input type="checkbox" name="isAdmin" checked="true" />
         <button>Submit</button>
