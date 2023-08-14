@@ -5,7 +5,7 @@
     <%- include('../partials/header.ejs')%>
     <div>
       <h4>Become a member today!</h4>
-      <form class="sign-up-form">
+      <form action="/user/sign-up" method="post" class="sign-up-form">
         <label for="name">First name</label>
         <input type="text" name="firstName" required />
         <div class="first-name errors"></div>
@@ -17,8 +17,12 @@
         <div class="username errors"></div>
         <label for="name">Password</label>
         <input type="password" name="password" required />
+        <div class="password errors"></div>
+        <label for="name">Confirm password</label>
+        <input type="password" name="confirmPassword" required />
+        <div class="confirm-password errors"></div>
         <label for="admin">Admin</label>
-        <input type="checkbox" name="admin" checked="true" />
+        <input type="checkbox" name="isAdmin" checked="true" />
         <button>Submit</button>
       </form>
     </div>

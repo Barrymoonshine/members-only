@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 // Define schema
-const usersSchema = new Schema({
+const userSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -17,7 +17,7 @@ const usersSchema = new Schema({
     required: true,
   },
   password: {
-    type: Number,
+    type: String,
     required: true,
   },
   isAdmin: {
@@ -32,6 +32,6 @@ const usersSchema = new Schema({
 });
 
 // Model
-const Users = mongoose.model('Users', usersSchema);
+const User = mongoose.model('Users', userSchema);
 
-export default Users;
+export default User;

@@ -1,11 +1,11 @@
 import express from 'express';
 import 'dotenv/config';
 import mongoose from 'mongoose';
-import usersRoutes from './routes/usersRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 const app = express();
 
-const dbURI = `mongodb+srv://${process.env.DB_CREDENTIALS}@cluster0.wym9xjg.mongodb.net/?retryWrites=true&w=majority`;
+const dbURI = `mongodb+srv://${process.env.DB_CREDENTIALS}@cluster0.wym9xjg.mongodb.net/members-only?retryWrites=true&w=majority`;
 
 const connectToDb = async () => {
   try {
@@ -22,7 +22,8 @@ connectToDb();
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
-app.use('/users', usersRoutes);
+app.use(express.urlencoded({ extended: true }));
+app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
   res.render('home');
