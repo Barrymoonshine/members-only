@@ -14,20 +14,18 @@ const user_post = async (req, res) => {
     const isAdmin = req.body.isAdmin === 'on';
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-    console.log('hashedPassword', hashedPassword);
     const user = new User({
       ...req.body,
       password: hashedPassword,
       isAdmin,
     });
-    console.log('user', user);
+
     // Delete confirm password as not needed in DB
     delete user.confirmPassword;
     await user.save();
-    res.redirect('/');
+    res.json({ redirect: '/' });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`user_post error: ${err}`);
   }
 };
 
