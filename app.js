@@ -20,10 +20,8 @@ connectToDb();
 
 app.set('view engine', 'ejs');
 
-// Middleware & static files
 app.use(express.static('public'));
 
-// Render a view
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('home');
 });
