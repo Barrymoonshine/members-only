@@ -1,16 +1,26 @@
 import express from 'express';
+import 'dotenv/config';
 
-// Set up Express app
 const app = express();
 
-// Listen for requests
-app.listen(3000);
+const dbURI = `mongodb+srv://${process.env.DB_CREDENTIALS}@cluster0.wym9xjg.mongodb.net/?retryWrites=true&w=majority`;
+
+const connectToDb = async () => {
+  try {
+    await mongoose.connect(dbURI);
+    app.listen(3000, '0.0.0.0', () => {
+      console.log('Server is listening on port 3000');
+    });
+  } catch (err) {
+    console.log(`Mongoose connection error: ${err}`);
+  }
+};
+connectToDb();
+
+app.set('view engine', 'ejs');
 
 // Middleware & static files
 app.use(express.static('public'));
-
-// Register View Engine (EJS)
-app.set('view engine', 'ejs');
 
 // Render a view
 app.get('/', (req, res) => {
