@@ -45,7 +45,6 @@ const user_post_sign_up = async (req, res) => {
 
 const user_get_join_us = async (req, res) => {
   try {
-    console.log('req.user', req.user);
     res.render('user/join-us', { script: 'join-us', user: req.user });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
@@ -54,10 +53,8 @@ const user_get_join_us = async (req, res) => {
 
 const user_put_join_us = async (req, res) => {
   try {
-    await User.findByIdAndUpdate(req.user._id, {
-      ...req.user,
-      isMember: true,
-    });
+    console.log('req.user._id', req.user._id);
+    await User.findByIdAndUpdate(req.user._id, { isMember: true });
     res.json({ redirect: '/' });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);

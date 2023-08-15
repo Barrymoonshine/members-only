@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session';
 import {
   user_get_sign_up,
   user_get_log_in,
@@ -15,8 +14,6 @@ import {
 import passport from '../middleware/pasport.js';
 
 const routes = express.Router();
-
-routes.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 
 routes.get('/sign-up', user_get_sign_up);
 

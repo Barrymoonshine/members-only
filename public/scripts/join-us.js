@@ -1,15 +1,15 @@
 const joinUsForm = document.querySelector('.join-us-form');
-const riddleInput = document.getElementById('riddle');
-const riddleError = document.querySelectorAll('.riddle-error');
+const riddleError = document.querySelector('.riddle-error');
 
 joinUsForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  if (riddleInput === 'friend' || riddleInput === 'Friend') {
+  const riddleInputValue = document.getElementById('riddle').value;
+  if (riddleInputValue === 'friend' || riddleInputValue === 'Friend') {
     try {
       const response = await fetch('/user/join-us', {
         method: 'PUT',
         body: JSON.stringify({
-          riddle: riddleInput.value,
+          riddle: riddleInputValue,
         }),
         headers: {
           'Content-Type': 'application/json',
