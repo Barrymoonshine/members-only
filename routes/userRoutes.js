@@ -5,6 +5,7 @@ import {
   user_post_sign_up,
   user_get_join_us,
   user_put_join_us,
+  user_get_post_view,
 } from '../controllers/userController.js';
 import {
   signUpValidation,
@@ -33,5 +34,7 @@ routes.post(
 routes.get('/join-us', user_get_join_us);
 
 routes.put('/join-us', joinUsValidation(), validate, user_put_join_us);
+
+routes.get('/post', user_get_post_view);
 
 export default routes;
