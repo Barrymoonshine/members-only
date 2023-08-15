@@ -5,14 +5,14 @@
     <%- include('../partials/header.ejs')%>
     <div>
       <h4>Join us!</h4>
-      <form action="/user/join-us" method="POST" class="log-in-form">
-        <h3>
-          To join the exclusive Club Land... Club, you must first solve a
-          riddle...
-        </h3>
-        <img src="/images/door-of-durin.png" width="300px" height="500px" />
+      <h3>
+        To join the exclusive Club Land... Club, you must first solve a
+        riddle...
+      </h3>
+      <img src="/images/door-of-durin.png" width="300px" height="500px" />
+      <form class="join-us-form">
         <label for="name">Answer</label>
-        <input type="test" name="riddle" required />
+        <input type="text" name="riddle" id="riddle" required />
         <div class="riddle-error errors"></div>
         <button>Submit</button>
       </form>

@@ -13,8 +13,8 @@ const user_get_log_in = async (req, res) => {
   try {
     res.render('user/log-in', {
       script: null,
-      user: req.user,
       failureMessage: req.session.messages,
+      user: req.user,
     });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
@@ -45,7 +45,20 @@ const user_post_sign_up = async (req, res) => {
 
 const user_get_join_us = async (req, res) => {
   try {
-    res.render('user/join-us', { script: null, user: req.user });
+    console.log('req.user', req.user);
+    res.render('user/join-us', { script: 'join-us', user: req.user });
+  } catch (err) {
+    console.log(`Mongoose find error: ${err}`);
+  }
+};
+
+const user_put_join_us = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.user._id, {
+      ...req.user,
+      isMember: true,
+    });
+    res.json({ redirect: '/' });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
   }
@@ -56,4 +69,5 @@ export {
   user_get_log_in,
   user_post_sign_up,
   user_get_join_us,
+  user_put_join_us,
 };
