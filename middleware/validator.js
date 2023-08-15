@@ -30,6 +30,19 @@ const signUpValidation = () => [
     .withMessage('Passwords do not match'),
 ];
 
+const joinUsValidation = () => [
+  check('riddle')
+    .isString()
+    .notEmpty()
+    .custom((value) => {
+      if (value === 'friend' || value === 'Friend') {
+        return true;
+      }
+      return false;
+    })
+    .withMessage('You shall not pass!'),
+];
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
@@ -38,4 +51,4 @@ const validate = (req, res, next) => {
   return res.status(422).json(errors.array());
 };
 
-export { signUpValidation, validate };
+export { signUpValidation, joinUsValidation, validate };

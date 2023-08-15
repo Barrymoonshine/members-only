@@ -3,7 +3,7 @@ import User from '../models/user.js';
 
 const user_get_sign_up = async (req, res) => {
   try {
-    res.render('user/sign-up', { script: 'sign-up' });
+    res.render('user/sign-up', { script: 'sign-up', user: req.user });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
   }
@@ -13,6 +13,7 @@ const user_get_log_in = async (req, res) => {
   try {
     res.render('user/log-in', {
       script: null,
+      user: req.user,
       failureMessage: req.session.messages,
     });
   } catch (err) {
@@ -20,7 +21,7 @@ const user_get_log_in = async (req, res) => {
   }
 };
 
-const user_post = async (req, res) => {
+const user_post_sign_up = async (req, res) => {
   try {
     const isAdmin = req.body.isAdmin === 'on';
 
@@ -40,4 +41,17 @@ const user_post = async (req, res) => {
   }
 };
 
-export { user_get_sign_up, user_get_log_in, user_post };
+const user_get_join_us = async (req, res) => {
+  try {
+    res.render('user/join-us', { script: null, user: req.user });
+  } catch (err) {
+    console.log(`Mongoose find error: ${err}`);
+  }
+};
+
+export {
+  user_get_sign_up,
+  user_get_log_in,
+  user_post_sign_up,
+  user_get_join_us,
+};
