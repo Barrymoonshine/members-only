@@ -4,9 +4,13 @@
   <body>
     <%- include('./partials/header.ejs')%>
     <div>
+      <% if (user) {%>
+      <h1>WELCOME BACK <%= user.username %></h1>
+      <% } else { %>
       <h4>Welcome to Club Land</h4>
       <h5>The exclusive members only club</h5>
       <p>Join us today to contribute to our community!</p>
+      <%}%>
       <p>Posts go here</p>
     </div>
     <%- include('./partials/footer.ejs')%>

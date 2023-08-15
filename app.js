@@ -1,6 +1,8 @@
 import express from 'express';
 import 'dotenv/config';
 import mongoose from 'mongoose';
+import passport from 'passport';
+import session from 'express-session';
 import userRoutes from './routes/userRoutes.js';
 
 const app = express();
@@ -21,11 +23,14 @@ connectToDb();
 
 app.set('view engine', 'ejs');
 
+app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
-  res.render('home', { script: null });
+  res.render('home', { script: null, user: req.user });
 });
