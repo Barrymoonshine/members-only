@@ -24,6 +24,10 @@ const userSchema = new Schema({
     type: Boolean,
     required: true,
   },
+  isMember: {
+    type: Boolean,
+    required: true,
+  },
   posts: {
     type: Array,
     default: [],

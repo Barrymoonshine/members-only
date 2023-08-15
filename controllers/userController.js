@@ -26,10 +26,12 @@ const user_post_sign_up = async (req, res) => {
     const isAdmin = req.body.isAdmin === 'on';
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    // Membership status initially false, as users must become members via the join-us view
     const user = new User({
       ...req.body,
       password: hashedPassword,
       isAdmin,
+      isMember: false,
     });
 
     // Delete confirm password as not needed in DB
