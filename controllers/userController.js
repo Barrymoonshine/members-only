@@ -53,7 +53,6 @@ const user_get_join_us = async (req, res) => {
 
 const user_put_join_us = async (req, res) => {
   try {
-    console.log('req.user._id', req.user._id);
     await User.findByIdAndUpdate(req.user._id, { isMember: true });
     res.json({ redirect: '/' });
   } catch (err) {
@@ -61,9 +60,22 @@ const user_put_join_us = async (req, res) => {
   }
 };
 
-const user_get_post_view = async (req, res) => {
+const user_get_create = async (req, res) => {
   try {
-    res.render('user/post', { script: null, user: req.user });
+    res.render('user/create', { script: 'create', user: req.user });
+  } catch (err) {
+    console.log(`Mongoose find error: ${err}`);
+  }
+};
+
+const user_put_create = async (req, res) => {
+  try {
+    const newPost = { ...req.body, author: req.user.username };
+    const newPostsArray = [...req.user.posts, newPost];
+    console.log('newPostsArray', newPostsArray);
+
+    await User.findByIdAndUpdate(req.user._id, { posts: newPostsArray });
+    res.json({ redirect: '/' });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
   }
@@ -75,5 +87,6 @@ export {
   user_post_sign_up,
   user_get_join_us,
   user_put_join_us,
-  user_get_post_view,
+  user_get_create,
+  user_put_create,
 };

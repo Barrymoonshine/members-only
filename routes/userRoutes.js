@@ -5,11 +5,13 @@ import {
   user_post_sign_up,
   user_get_join_us,
   user_put_join_us,
-  user_get_post_view,
+  user_get_create,
+  user_put_create,
 } from '../controllers/userController.js';
 import {
   signUpValidation,
   joinUsValidation,
+  createValidation,
   validate,
 } from '../middleware/validator.js';
 import passport from '../middleware/pasport.js';
@@ -35,6 +37,8 @@ routes.get('/join-us', user_get_join_us);
 
 routes.put('/join-us', joinUsValidation(), validate, user_put_join_us);
 
-routes.get('/post', user_get_post_view);
+routes.get('/create', user_get_create);
+
+routes.put('/create', createValidation(), validate, user_put_create);
 
 export default routes;

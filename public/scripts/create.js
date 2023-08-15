@@ -4,13 +4,12 @@ const postError = document.querySelector('.post-error');
 createPostForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const postValue = document.getElementById('post').value;
-  const timeDateStamp = new Date().getTime();
   try {
-    const response = await fetch('/user/join-us', {
-      method: 'POST',
+    const response = await fetch('/user/create', {
+      method: 'PUT',
       body: JSON.stringify({
         post: postValue,
-        created: timeDateStamp,
+        created: new Date(),
       }),
       headers: {
         'Content-Type': 'application/json',
