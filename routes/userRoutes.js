@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session';
 import {
   user_get_sign_up,
   user_get_log_in,
@@ -21,6 +20,7 @@ routes.post(
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/user/log-in',
+    failureMessage: true,
   })
 );
 

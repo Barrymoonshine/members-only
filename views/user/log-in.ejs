@@ -17,7 +17,11 @@
           title="Please enter a password that is between 8 and 20 characters long and contains at least one number, one capital letter and one special symbol(!@#$%^&*=+-_)"
           required
         />
-        <div class="password-error errors"></div>
+        <div class="password-error errors">
+          <% if (failureMessage) {%>
+          <p><%= failureMessage %></p>
+          <%}%>
+        </div>
         <button>Submit</button>
       </form>
     </div>

@@ -11,7 +11,10 @@ const user_get_sign_up = async (req, res) => {
 
 const user_get_log_in = async (req, res) => {
   try {
-    res.render('user/log-in', { script: null });
+    res.render('user/log-in', {
+      script: null,
+      failureMessage: req.session.messages,
+    });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
   }
