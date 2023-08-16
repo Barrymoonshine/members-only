@@ -43,7 +43,7 @@ const joinUsValidation = () => [
     .withMessage('You shall not pass!'),
 ];
 
-const createValidation = () => [
+const messageValidation = () => [
   check('post').isString().notEmpty().withMessage('Please enter a post'),
 ];
 
@@ -55,4 +55,4 @@ const validate = (req, res, next) => {
   return res.status(422).json(errors.array());
 };
 
-export { signUpValidation, joinUsValidation, createValidation, validate };
+export { signUpValidation, joinUsValidation, messageValidation, validate };

@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
 import userRoutes from './routes/userRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use('/user', userRoutes);
+app.use('/message', messageRoutes);
 
 app.get('/', (req, res) => {
   res.render('home', { script: null, user: req.user });

@@ -1,17 +1,15 @@
-const createPostForm = document.querySelector('.create-post-form');
-const postError = document.querySelector('.post-error');
+const createMessageForm = document.querySelector('.create-message-form');
+const messageError = document.querySelector('.message-error');
 
-createPostForm.addEventListener('submit', async (e) => {
+createMessageForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const postValue = document.getElementById('post').value;
+  const messageValue = document.getElementById('message').value;
 
-  const timeStamp = format(new Date(), 'MM/DD/YYYY p');
   try {
-    const response = await fetch('/user/create', {
-      method: 'PUT',
+    const response = await fetch('/message/create', {
+      method: 'POST',
       body: JSON.stringify({
-        post: postValue,
-        created: timeStamp,
+        post: messageValue,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -23,7 +21,7 @@ createPostForm.addEventListener('submit', async (e) => {
     if (response.ok) {
       window.location.href = data.redirect;
     } else {
-      postError.textContent = data[0].msg;
+      messageError.textContent = data[0].msg;
     }
   } catch (err) {
     console.log(err);
