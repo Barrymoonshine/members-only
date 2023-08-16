@@ -39,7 +39,12 @@ app.get('/', async (req, res) => {
     const messages = await Message.find().sort({
       createdAt: -1,
     });
-    res.render('home', { script: 'home', user: req.user, messages });
+    res.render('home', {
+      script: 'home',
+      user: req.user,
+      messages,
+      style: 'home',
+    });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
   }
