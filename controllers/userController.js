@@ -13,6 +13,7 @@ const user_get_log_in = async (req, res) => {
   try {
     res.render('user/log-in', {
       script: null,
+      style: 'log-in',
       failureMessage: req.session.messages,
       user: req.user,
     });

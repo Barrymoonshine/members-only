@@ -1,16 +1,24 @@
 const createMessageForm = document.querySelector('.create-message-form');
-const messageError = document.querySelector('.message-error');
+const errorMessages = document.querySelectorAll('.errors');
 
 createMessageForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const messageValue = document.getElementById('message').value;
 
   try {
+    const formValues = {};
+
+    Array.from(createMessageForm.elements).forEach((el) => {
+      // Ensures no null values are added to the formValues object
+      if (el.getAttribute('name')) {
+        formValues[el.getAttribute('name')] = el.value;
+      }
+    });
+
     const response = await fetch('/message/create', {
       method: 'POST',
       body: JSON.stringify({
+        ...formValues,
         username: e.target.dataset.doc,
-        message: messageValue,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +30,14 @@ createMessageForm.addEventListener('submit', async (e) => {
     if (response.ok) {
       window.location.href = data.redirect;
     } else {
-      messageError.textContent = data[0].msg;
+      Array.from(errorMessages).forEach((msg) => {
+        msg.textContent = '';
+      });
+
+      data.forEach((err) => {
+        const el = document.querySelector(`.${err.path}-error`);
+        el.textContent = err.msg;
+      });
     }
   } catch (err) {
     console.log(err);

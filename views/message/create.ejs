@@ -7,6 +7,9 @@
       <h4>Create a post!</h4>
 
       <form class="create-message-form" data-doc="<%= user.username %>">
+        <label for="title">Title</label>
+        <input type="text" name="title" required />
+        <div class="title-error errors"></div>
         <label for="message">Message</label>
         <textarea name="message" id="message" required></textarea>
         <div class="message-error errors"></div>

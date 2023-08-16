@@ -4,25 +4,36 @@ body {
   min-height: 100vh;
   width: 100%;
   margin: 0px;
-  background-color: #f9fafb;
+  background-color: #ffffff;
+  color: #09090b;
   font-family: 'Roboto Slab', serif;
 }
 
 header {
   display: flex;
   justify-content: space-between;
-  padding: 5px 20px 5px 20px;
-  background-color: #3f3f46;
+  padding: 0px 20px 0px 20px;
+  border-bottom: 1px solid #d4d4d4;
 }
 
 header h3 {
   font-size: 30px;
 }
 
+header a {
+  color: #2652cc;
+}
+
 header a,
 nav a {
-  color: #f4f4f5;
   text-decoration: none;
+}
+
+nav a {
+  background-color: #2652cc;
+  color: #ffffff;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
 }
 
 nav {

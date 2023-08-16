@@ -2,7 +2,11 @@ import Message from '../models/message.js';
 
 const message_get_create = async (req, res) => {
   try {
-    res.render('message/create', { script: 'create', user: req.user });
+    res.render('message/create', {
+      script: 'create',
+      style: 'create',
+      user: req.user,
+    });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
   }

@@ -5,36 +5,50 @@
     <%- include('./partials/header.ejs')%>
     <div>
       <% if (user) {%>
-      <h1>WELCOME BACK <%= user.username %></h1>
-      <% } else { %>
-      <h4>Welcome to Club Land</h4>
-      <h5>The ultra-exclusive members only club</h5>
-      <p>Join us today to contribute to our community!</p>
-      <h6>Rules:</h6>
-      <p>Admins can delete posts</p>
-      <p>Members can view who posted and when</p>
-      <p>You do not talk about Club Land!</p>
-      <%}%> <% if(messages.length >0 ) { %> <% messages.forEach((post) => { %>
-      <% if (user === undefined) {%>
-      <div>Post: <%=post.message%></div>
-      <%} else if (user.isAdmin && !user.isMember) {%>
-      <div>Post: <%=post.message%></div>
-      <div>
-        Delete:<button class="delete-button" data-doc="<%=post._id%>">
-          Delete
-        </button>
+      <div class="welcome-container">
+        <h4>WELCOME BACK <%= user.username %></h1>
       </div>
-      <%} else if (!user.isAdmin && user.isMember) {%>
-      <div>Post: <%=post.message%></div>
-      <div>By: <%=post.username%></div>
-      <div>Date: <%=post.createdAt%></div>
-      <%} else if (user.isAdmin && user.isMember) {%>
-      <div>Post: <%=post.message%></div>
-      <div>By: <%=post.username%></div>
-      <div>Date: <%=post.createdAt%></div>
-      <div>
-        Delete:
-        <button class="delete-button" data-doc="<%=post._id%>">Delete</button>
+      <% } else { %>
+      <div class="welcome-container">
+        <h4>Welcome to ClubLand</h4>
+        <p>Sign up to contribute to the community today!</p>
+      </div>
+      <%}%> <% if(messages.length >0 ) { %> <% messages.forEach((post) => { %>
+      <div class="posts-container">
+        <% if (user === undefined) {%>
+        <div class="post">
+          <div><h5><%=post.title%></h5></div>
+          <div><%=post.message%></div>
+        </div>
+        <%} else if (user.isAdmin && !user.isMember) {%>
+        <div class="post">
+          <div><h5><%=post.title%></h5></div>
+          <div><%=post.message%></div>
+          <div>
+            <button class="delete-button" data-doc="<%=post._id%>">
+              Delete
+            </button>
+          </div>
+        </div>
+        <%} else if (!user.isAdmin && user.isMember) {%>
+        <div class="post">
+          <div><h5><%=post.title%></h5></div>
+          <div><%=post.message%></div>
+          <div>By: <%=post.username%></div>
+          <div>Date: <%=post.createdAt%></div>
+        </div>
+        <%} else if (user.isAdmin && user.isMember) {%>
+        <div class="post">
+          <div><h5><%=post.title%></h5></div>
+          <div><%=post.message%></div>
+          <div>By: <%=post.username%></div>
+          <div>Date: <%=post.createdAt%></div>
+          <div>
+            <button class="delete-button" data-doc="<%=post._id%>">
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
       <%}})} else {%>
       <p>No messages found</p>
