@@ -17,7 +17,11 @@
       <div>Post: <%=post.message%></div>
       <%} else if (user.isAdmin && !user.isMember) {%>
       <div>Post: <%=post.message%></div>
-      <div>Delete: insert delete button/link</div>
+      <div>
+        Delete:<button class="delete-button" data-doc="<%=post._id%>">
+          Delete
+        </button>
+      </div>
       <%} else if (!user.isAdmin && user.isMember) {%>
       <div>Post: <%=post.message%></div>
       <div>By: <%=post.username%></div>
@@ -26,7 +30,10 @@
       <div>Post: <%=post.message%></div>
       <div>By: <%=post.username%></div>
       <div>Date: <%=post.createdAt%></div>
-      <div>Delete: insert delete button/link</div>
+      <div>
+        Delete:
+        <button class="delete-button" data-doc="<%=post._id%>">Delete</button>
+      </div>
       <%}})} else {%>
       <p>No messages found</p>
       <%}%>

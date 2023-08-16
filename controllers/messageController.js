@@ -18,4 +18,13 @@ const message_post_create = async (req, res) => {
   }
 };
 
-export { message_get_create, message_post_create };
+const message_delete = async (req, res) => {
+  try {
+    await Message.findByIdAndDelete(req.body._id);
+    res.json({ redirect: '/' });
+  } catch (err) {
+    console.log(`Mongoose find error: ${err}`);
+  }
+};
+
+export { message_get_create, message_post_create, message_delete };
