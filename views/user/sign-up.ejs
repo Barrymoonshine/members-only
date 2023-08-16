@@ -4,7 +4,9 @@
   <body>
     <%- include('../partials/header.ejs')%>
     <div>
-      <h4>Become a member today!</h4>
+      <div class="sign-up-container">
+        <h4>Become a member today!</h4>
+      </div>
       <form class="sign-up-form">
         <label for="name">First name</label>
         <input type="text" name="firstName" required />
@@ -37,7 +39,7 @@
         <div class="confirm-password-error errors"></div>
         <label for="admin">Admin</label>
         <input type="checkbox" name="isAdmin" checked="true" />
-        <button>Submit</button>
+        <button class="submit-button">Submit</button>
       </form>
     </div>
     <%- include('../partials/footer.ejs')%>
