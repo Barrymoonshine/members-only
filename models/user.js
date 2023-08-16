@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-// Define schema
 const userSchema = new Schema({
   firstName: {
     type: String,
@@ -28,14 +27,8 @@ const userSchema = new Schema({
     type: Boolean,
     required: true,
   },
-  posts: {
-    type: Array,
-    default: [],
-    timestamps: true,
-  },
 });
 
-// Model
 const User = mongoose.model('Users', userSchema);
 
 export default User;
