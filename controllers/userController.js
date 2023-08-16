@@ -81,6 +81,17 @@ const user_put_create = async (req, res) => {
   }
 };
 
+const user_get_my_account = async (req, res) => {
+  try {
+    res.render('user/my-account', {
+      script: null,
+      user: req.user,
+    });
+  } catch (err) {
+    console.log(`Mongoose find error: ${err}`);
+  }
+};
+
 export {
   user_get_sign_up,
   user_get_log_in,
@@ -89,4 +100,5 @@ export {
   user_put_join_us,
   user_get_create,
   user_put_create,
+  user_get_my_account,
 };

@@ -6,12 +6,14 @@
     <div>
       <% if (user) {%>
       <h1>WELCOME BACK <%= user.username %></h1>
-      <p>Insert permissions based on user's creds here</p>
       <% } else { %>
       <h4>Welcome to Club Land</h4>
-      <h5>The exclusive members only club</h5>
+      <h5>The ultra-exclusive members only club</h5>
       <p>Join us today to contribute to our community!</p>
-      <p>Insert rules here</p>
+      <h6>Rules:</h6>
+      <p>Admins can delete posts</p>
+      <p>Members can view who posted and when</p>
+      <p>You do not talk about Club Land!</p>
       <%}%> <% if(messages.length >0 ) { %> <% messages.forEach((post) => { %>
       <% if (user === undefined) {%>
       <div>Post: <%=post.message%></div>
