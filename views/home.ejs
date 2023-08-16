@@ -10,8 +10,13 @@
       <h4>Welcome to Club Land</h4>
       <h5>The exclusive members only club</h5>
       <p>Join us today to contribute to our community!</p>
+      <%}%> <% if(messages.length >0 ) { %> <% messages.map((post) => { %>
+      <div>Post: <%=post.message%></div>
+      <div>By: <%=post.username%></div>
+      <div>Date: <%=post.createdAt%></div>
+      <%})} else {%>
+      <p>No messages found</p>
       <%}%>
-      <p>Posts go here</p>
     </div>
     <%- include('./partials/footer.ejs')%>
   </body>

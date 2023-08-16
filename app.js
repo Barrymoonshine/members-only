@@ -5,6 +5,7 @@ import passport from 'passport';
 import session from 'express-session';
 import userRoutes from './routes/userRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
+import Message from './models/message.js';
 
 const app = express();
 
@@ -33,6 +34,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/user', userRoutes);
 app.use('/message', messageRoutes);
 
-app.get('/', (req, res) => {
-  res.render('home', { script: null, user: req.user });
+app.get('/', async (req, res) => {
+  try {
+    const messages = await Message.find().sort({
+      createdAt: -1,
+    });
+    res.render('home', { script: null, user: req.user, messages });
+  } catch (err) {
+    console.log(`Mongoose find error: ${err}`);
+  }
 });
