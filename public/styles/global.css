@@ -64,3 +64,35 @@ footer {
   width: 100%;
   margin-top: auto;
 }
+
+label {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+input {
+  border: 2px solid #d4d4d4;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+input:focus {
+  outline: none !important;
+  border: 2px solid #2652cc;
+}
+
+.submit-button {
+  margin-top: 10px;
+  background-color: #2652cc;
+  border: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+  background-color: #2249b4;
+}

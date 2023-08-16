@@ -4,7 +4,9 @@
   <body>
     <%- include('../partials/header.ejs')%>
     <div>
-      <h4>Log in</h4>
+      <div class="log-in-container">
+        <h4>Log in</h4>
+      </div>
       <form action="/user/log-in" method="POST" class="log-in-form">
         <label for="name">Username</label>
         <input type="text" name="username" required />
@@ -22,7 +24,7 @@
           <p><%= failureMessage %></p>
           <%}%>
         </div>
-        <button>Submit</button>
+        <button class="submit-button">Submit</button>
       </form>
     </div>
     <%- include('../partials/footer.ejs')%>

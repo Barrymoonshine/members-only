@@ -11,7 +11,7 @@
       <% } else { %>
       <div class="welcome-container">
         <h4>Welcome to ClubLand</h4>
-        <p>Sign up to contribute to the community today!</p>
+        <p>Sign up and contribute to the community today!</p>
       </div>
       <%}%> <% if(messages.length >0 ) { %> <% messages.forEach((post) => { %>
       <div class="posts-container">
@@ -19,6 +19,7 @@
         <div class="post">
           <div><h5><%=post.title%></h5></div>
           <div><%=post.message%></div>
+          <div class="sign-up-message">Sign up and become a member to view more details</div>
         </div>
         <%} else if (user.isAdmin && !user.isMember) {%>
         <div class="post">

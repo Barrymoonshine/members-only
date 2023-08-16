@@ -13,7 +13,7 @@
 }
 
 .welcome-container {
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 
 .posts-container {
@@ -38,4 +38,10 @@
 .post h5 {
   font-size: 20px;
   margin: 0px;
+}
+
+.sign-up-message {
+  border-top: 1px solid #d4d4d4;
+  color: #a8a6a6;
+  padding-top: 10px;
 }
