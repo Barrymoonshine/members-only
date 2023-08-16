@@ -44,7 +44,7 @@ const joinUsValidation = () => [
 ];
 
 const messageValidation = () => [
-  check('post').isString().notEmpty().withMessage('Please enter a post'),
+  check('message').isString().notEmpty().withMessage('Please enter a message'),
 ];
 
 const validate = (req, res, next) => {

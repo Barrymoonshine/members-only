@@ -9,7 +9,8 @@ createMessageForm.addEventListener('submit', async (e) => {
     const response = await fetch('/message/create', {
       method: 'POST',
       body: JSON.stringify({
-        post: messageValue,
+        username: e.target.dataset.doc,
+        message: messageValue,
       }),
       headers: {
         'Content-Type': 'application/json',

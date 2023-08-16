@@ -10,11 +10,8 @@ const message_get_create = async (req, res) => {
 
 const message_post_create = async (req, res) => {
   try {
-    // const newPost = { ...req.body, author: req.user.username };
-    // const newPostsArray = [...req.user.posts, newPost];
-    // console.log('newPostsArray', newPostsArray);
-
-    // await User.findByIdAndUpdate(req.user._id, { posts: newPostsArray });
+    const message = new Message(req.body);
+    await message.save();
     res.json({ redirect: '/' });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
