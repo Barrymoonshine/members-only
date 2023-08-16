@@ -70,14 +70,16 @@ label {
   margin-bottom: 5px;
 }
 
-input {
+input,
+textarea {
   border: 2px solid #d4d4d4;
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 5px;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   outline: none !important;
   border: 2px solid #2652cc;
 }
