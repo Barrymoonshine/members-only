@@ -9,7 +9,16 @@
       </div>
       <div class="permissions-container">
         <h5>Permissions:</h5>
-        <% if (user.isAdmin && !user.isMember) {%>
+        <% if (!user.isAdmin && !user.isMember) {%>
+        <p>
+          ❌ Admin - you can't delete posts. To become an Admin click
+          <button class="admin-button">Here</button>
+        </p>
+        <p>
+          ❌ Member - you can't view who posted and when. To become a member,
+          click 'Join us' and solve the riddle
+        </p>
+        <%} else if (user.isAdmin && !user.isMember) {%>
         <p>✓ Admin - you can delete posts</p>
         <p>
           ❌ Member - you can't view who posted and when. To become a member,

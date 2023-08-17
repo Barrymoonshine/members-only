@@ -10,6 +10,8 @@ signUpForm.addEventListener('submit', async (e) => {
     confirmPasswordError.textContent = 'Passwords do not match';
   } else {
     try {
+      const adminBoolean = document.getElementById('adminCheckbox').checked;
+
       const formValues = {};
 
       Array.from(signUpForm.elements).forEach((el) => {
@@ -21,7 +23,10 @@ signUpForm.addEventListener('submit', async (e) => {
 
       const response = await fetch('/user/sign-up', {
         method: 'POST',
-        body: JSON.stringify(formValues),
+        body: JSON.stringify({
+          ...formValues,
+          isAdmin: adminBoolean,
+        }),
         headers: {
           'Content-Type': 'application/json',
         },

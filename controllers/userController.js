@@ -28,14 +28,11 @@ const user_get_log_in = async (req, res) => {
 
 const user_post_sign_up = async (req, res) => {
   try {
-    const isAdmin = req.body.isAdmin === 'on';
-
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     // Membership status initially false, as users must become members via the join-us view
     const user = new User({
       ...req.body,
       password: hashedPassword,
-      isAdmin,
       isMember: false,
     });
 
@@ -81,7 +78,6 @@ const user_put_create = async (req, res) => {
   try {
     const newPost = { ...req.body, author: req.user.username };
     const newPostsArray = [...req.user.posts, newPost];
-    console.log('newPostsArray', newPostsArray);
 
     await User.findByIdAndUpdate(req.user._id, { posts: newPostsArray });
     res.json({ redirect: '/' });
@@ -102,6 +98,15 @@ const user_get_my_account = async (req, res) => {
   }
 };
 
+const user_put_admin = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.user._id, { isAdmin: true });
+    res.json({ redirect: '/' });
+  } catch (err) {
+    console.log(`Mongoose find error: ${err}`);
+  }
+};
+
 export {
   user_get_sign_up,
   user_get_log_in,
@@ -111,4 +116,5 @@ export {
   user_get_create,
   user_put_create,
   user_get_my_account,
+  user_put_admin,
 };

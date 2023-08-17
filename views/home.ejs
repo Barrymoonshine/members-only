@@ -11,16 +11,23 @@
       <% } else { %>
       <div class="welcome-container">
         <h4>Welcome to ClubLand</h4>
-        <p>Sign up and contribute to the community today!</p>
+        <p>Sign up or log in to contribute to the community today!</p>
       </div>
-      <%}%> <% if(messages.length >0 ) { %> <% messages.forEach((post) => { %>
+      <%}%> 
+      <% if(messages.length >0 ) { %> <% messages.forEach((post) => { %>
       <div class="posts-container">
         <% if (user === undefined) {%>
         <div class="post">
           <div><h5><%=post.title%></h5></div>
           <div><%=post.message%></div>
-          <div class="sign-up-message">Sign up and become a member to view more details</div>
+          <div class="sign-up-message">Sign up and become a Member to view more details</div>
         </div>
+        <%} else if (!user.isAdmin && !user.isMember) {%>
+          <div class="post">
+            <div><h5><%=post.title%></h5></div>
+            <div><%=post.message%></div>
+            <div class="sign-up-message">Become a Member and Admin to view more details</div>
+          </div>
         <%} else if (user.isAdmin && !user.isMember) {%>
         <div class="post">
           <div><h5><%=post.title%></h5></div>
@@ -30,7 +37,7 @@
               Delete
             </button>
           </div>
-          <div class="sign-up-message">Become a member to view who made this post and when</div>
+          <div class="sign-up-message">Become a Member to view who made this post and when</div>
         </div>
         <%} else if (!user.isAdmin && user.isMember) {%>
         <div class="post">
@@ -38,7 +45,7 @@
           <div><%=post.message%></div>
           <div>By: <%=post.username%></div>
           <div>Date: <%=post.createdAt%></div>
-          <div class="sign-up-message">Create a new user to become an Admin and delete posts</div>
+          <div class="sign-up-message">Go to My Account to become an Admin and delete posts</div>
         </div>
         <%} else if (user.isAdmin && user.isMember) {%>
         <div class="post">

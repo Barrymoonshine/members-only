@@ -6,6 +6,7 @@ import {
   user_get_join_us,
   user_put_join_us,
   user_get_my_account,
+  user_put_admin,
 } from '../controllers/userController.js';
 import {
   signUpValidation,
@@ -38,5 +39,7 @@ routes.put('/join-us', joinUsValidation(), validate, user_put_join_us);
 routes.get('/my-account', user_get_my_account);
 
 routes.post('/log-out', logOut());
+
+routes.put('/make-admin', user_put_admin);
 
 export default routes;
