@@ -66,26 +66,6 @@ const user_put_join_us = async (req, res) => {
   }
 };
 
-const user_get_create = async (req, res) => {
-  try {
-    res.render('user/create', { script: 'create', user: req.user });
-  } catch (err) {
-    console.log(`user_get_create error: ${err}`);
-  }
-};
-
-const user_put_create = async (req, res) => {
-  try {
-    const newPost = { ...req.body, author: req.user.username };
-    const newPostsArray = [...req.user.posts, newPost];
-
-    await User.findByIdAndUpdate(req.user._id, { posts: newPostsArray });
-    res.json({ redirect: '/' });
-  } catch (err) {
-    console.log(`user_put_create error: ${err}`);
-  }
-};
-
 const user_get_my_account = async (req, res) => {
   try {
     res.render('user/my-account', {
@@ -113,8 +93,6 @@ export {
   user_post_sign_up,
   user_get_join_us,
   user_put_join_us,
-  user_get_create,
-  user_put_create,
   user_get_my_account,
   user_put_admin,
 };
