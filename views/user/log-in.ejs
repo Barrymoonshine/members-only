@@ -19,11 +19,11 @@
           title="Please enter a password that is between 8 and 20 characters long and contains at least one number, one capital letter and one special symbol(!@#$%^&*=+-_)"
           required
         />
+        <% if (failureMessage) {%>
         <div class="password-error errors">
-          <% if (failureMessage) {%>
-          <p><%= failureMessage %></p>
-          <%}%>
+          <p><%= failureMessage.pop() %></p>
         </div>
+        <%}%>
         <button class="submit-button">Submit</button>
       </form>
     </div>
