@@ -34,4 +34,13 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-export default passport;
+const logOut = () => (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.json({ redirect: '/' });
+  });
+};
+
+export { passport, logOut };

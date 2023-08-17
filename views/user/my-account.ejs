@@ -4,20 +4,26 @@
   <body>
     <%- include('../partials/header.ejs')%>
     <div>
-      <h4>My account</h4>
-      Your Club Land permissions: <% if (user.isAdmin && !user.isMember) {%>
-      <p>Admins can delete posts</p>
-      <p>
-        To view who posted and when, click 'Join us' and solve the riddle to
-        become a member
-      </p>
-      <% } else if (!user.isAdmin && user.isMember) { %>
-      <p>Members can view who posted and when</p>
-      <p>However, only Admins can delete posts</p>
-      <% } else { %>
-      <p>Admins can delete posts</p>
-      <p>Members can view who posted and when</p>
-      <%}%>
+      <div class="my-account-container">
+        <h4>Your account permissions</h4>
+      </div>
+      <div class="permissions-container">
+        <h5>Permissions:</h5>
+        <% if (user.isAdmin && !user.isMember) {%>
+        <p>✓ Admin - you can delete posts</p>
+        <p>
+          ❌ Member - you can't view who posted and when. To become a member,
+          click 'Join us' and solve the riddle
+        </p>
+        <% } else if (!user.isAdmin && user.isMember) { %>
+        <p>❌ Admin - you can't delete posts. To become an Admin click here:</p>
+        <p>✓ Member - you can view who posted and when</p>
+        <% } else { %>
+        <p>✓ Admin - you can delete posts</p>
+        <p>✓ Member - you can view who posted and when</p>
+        <%}%>
+        <button class="log-out-button">Log out</button>
+      </div>
     </div>
     <%- include('../partials/footer.ejs')%>
   </body>

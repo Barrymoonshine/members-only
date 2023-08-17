@@ -93,7 +93,7 @@ const user_put_create = async (req, res) => {
 const user_get_my_account = async (req, res) => {
   try {
     res.render('user/my-account', {
-      script: null,
+      script: 'my-account',
       style: 'my-account',
       user: req.user,
     });

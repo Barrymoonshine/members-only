@@ -1,0 +1,38 @@
+.my-account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #f7f7f7;
+  margin-bottom: 40px;
+}
+
+.my-account-container h4 {
+  font-size: 30px;
+}
+
+.permissions-container h5 {
+  font-size: 25px;
+}
+
+.permissions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.log-out-button {
+  margin-top: 10px;
+  background-color: #2652cc;
+  border: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.log-out-button:hover {
+  cursor: pointer;
+  background-color: #2249b4;
+}
