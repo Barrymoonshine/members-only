@@ -46,6 +46,6 @@ app.get('/', async (req, res) => {
       style: 'home',
     });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`home route error: ${err}`);
   }
 });

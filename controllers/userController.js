@@ -9,7 +9,7 @@ const user_get_sign_up = async (req, res) => {
       user: req.user,
     });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`user_get_sign_up error: ${err}`);
   }
 };
 
@@ -22,7 +22,7 @@ const user_get_log_in = async (req, res) => {
       user: req.user,
     });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(` user_get_log_in error: ${err}`);
   }
 };
 
@@ -41,7 +41,7 @@ const user_post_sign_up = async (req, res) => {
     await user.save();
     res.json({ redirect: '/' });
   } catch (err) {
-    console.log(`user_post error: ${err}`);
+    console.log(`user_post_sign_up error: ${err}`);
   }
 };
 
@@ -53,7 +53,7 @@ const user_get_join_us = async (req, res) => {
       user: req.user,
     });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`user_get_join_us error: ${err}`);
   }
 };
 
@@ -62,7 +62,7 @@ const user_put_join_us = async (req, res) => {
     await User.findByIdAndUpdate(req.user._id, { isMember: true });
     res.json({ redirect: '/' });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`user_put_join_us error: ${err}`);
   }
 };
 
@@ -70,7 +70,7 @@ const user_get_create = async (req, res) => {
   try {
     res.render('user/create', { script: 'create', user: req.user });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`user_get_create error: ${err}`);
   }
 };
 
@@ -82,7 +82,7 @@ const user_put_create = async (req, res) => {
     await User.findByIdAndUpdate(req.user._id, { posts: newPostsArray });
     res.json({ redirect: '/' });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`user_put_create error: ${err}`);
   }
 };
 
@@ -94,7 +94,7 @@ const user_get_my_account = async (req, res) => {
       user: req.user,
     });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`user_get_my_account error: ${err}`);
   }
 };
 
@@ -103,7 +103,7 @@ const user_put_admin = async (req, res) => {
     await User.findByIdAndUpdate(req.user._id, { isAdmin: true });
     res.json({ redirect: '/' });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`user_put_admin error: ${err}`);
   }
 };
 

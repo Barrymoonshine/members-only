@@ -8,7 +8,7 @@ const message_get_create = async (req, res) => {
       user: req.user,
     });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`message_get_create error: ${err}`);
   }
 };
 
@@ -18,7 +18,7 @@ const message_post_create = async (req, res) => {
     await message.save();
     res.json({ redirect: '/' });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`message_post_create error: ${err}`);
   }
 };
 
@@ -27,7 +27,7 @@ const message_delete = async (req, res) => {
     await Message.findByIdAndDelete(req.body._id);
     res.json({ redirect: '/' });
   } catch (err) {
-    console.log(`Mongoose find error: ${err}`);
+    console.log(`message_delete error: ${err}`);
   }
 };
 
