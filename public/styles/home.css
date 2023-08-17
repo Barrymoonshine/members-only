@@ -45,3 +45,12 @@
   color: #a8a6a6;
   padding-top: 10px;
 }
+
+.delete-button {
+  border: none;
+  background-color: transparent;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+}
