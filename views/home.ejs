@@ -14,8 +14,8 @@
         <p>Sign up or log in to contribute to the community today!</p>
       </div>
       <%}%> 
-      <% if(messages.length >0 ) { %> <% messages.forEach((post) => { %>
       <div class="posts-container">
+      <% if(messages.length >0 ) { %> <% messages.forEach((post) => { %>
         <% if (user === undefined) {%>
         <div class="post">
           <div><h5><%=post.title%></h5></div>
@@ -59,10 +59,11 @@
             </button>
           </div>
         </div>
-      </div>
+     
       <%}})} else {%>
       <p>No messages found</p>
       <%}%>
+    </div>
     </div>
     <%- include('./partials/footer.ejs')%>
   </body>

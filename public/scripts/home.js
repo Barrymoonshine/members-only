@@ -12,7 +12,7 @@ if (deleteButton === null) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          _id: e.target.dataset.doc,
+          _id: deleteButton.dataset.doc,
         }),
       });
 
