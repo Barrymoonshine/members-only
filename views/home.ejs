@@ -30,6 +30,7 @@
               Delete
             </button>
           </div>
+          <div class="sign-up-message">Become a member to view who made this post and when</div>
         </div>
         <%} else if (!user.isAdmin && user.isMember) {%>
         <div class="post">
@@ -37,6 +38,7 @@
           <div><%=post.message%></div>
           <div>By: <%=post.username%></div>
           <div>Date: <%=post.createdAt%></div>
+          <div class="sign-up-message">Create a new user to become an Admin and delete posts</div>
         </div>
         <%} else if (user.isAdmin && user.isMember) {%>
         <div class="post">

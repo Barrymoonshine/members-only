@@ -4,7 +4,10 @@
   </div>
   <nav>
     <ul>
-      <% if (user) {%>
+      <% if (user && user.isMember) {%>
+      <li><a href="/message/create">Create</a></li>
+      <li><a href="/user/my-account">My account</a></li>
+      <% } else if (user && !user.isMember) {%>
       <li><a href="/user/join-us">Join us</a></li>
       <li><a href="/message/create">Create</a></li>
       <li><a href="/user/my-account">My account</a></li>

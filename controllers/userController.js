@@ -50,7 +50,11 @@ const user_post_sign_up = async (req, res) => {
 
 const user_get_join_us = async (req, res) => {
   try {
-    res.render('user/join-us', { script: 'join-us', user: req.user });
+    res.render('user/join-us', {
+      script: 'join-us',
+      style: 'join-us',
+      user: req.user,
+    });
   } catch (err) {
     console.log(`Mongoose find error: ${err}`);
   }
@@ -90,6 +94,7 @@ const user_get_my_account = async (req, res) => {
   try {
     res.render('user/my-account', {
       script: null,
+      style: 'my-account',
       user: req.user,
     });
   } catch (err) {
