@@ -35,7 +35,7 @@ const joinUsValidation = () => [
     .isString()
     .notEmpty()
     .custom((value) => {
-      if (value === 'friend' || value === 'Friend') {
+      if (value.toLowerCase() === 'friend') {
         return true;
       }
       return false;

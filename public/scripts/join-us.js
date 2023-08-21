@@ -4,7 +4,7 @@ const riddleError = document.querySelector('.riddle-error');
 joinUsForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const riddleInputValue = document.getElementById('riddle').value;
-  if (riddleInputValue === 'friend' || riddleInputValue === 'Friend') {
+  if (riddleInputValue.toLowerCase() === 'friend') {
     try {
       const response = await fetch('/user/join-us', {
         method: 'PUT',
