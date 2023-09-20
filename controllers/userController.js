@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import User from '../models/user.js';
 
-const user_get_sign_up = async (req, res) => {
+export const user_get_sign_up = async (req, res) => {
   try {
     res.render('user/sign-up', {
       script: 'sign-up',
@@ -13,7 +13,7 @@ const user_get_sign_up = async (req, res) => {
   }
 };
 
-const user_get_log_in = async (req, res) => {
+export const user_get_log_in = async (req, res) => {
   try {
     res.render('user/log-in', {
       script: null,
@@ -26,7 +26,7 @@ const user_get_log_in = async (req, res) => {
   }
 };
 
-const user_post_sign_up = async (req, res) => {
+export const user_post_sign_up = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     // Membership status initially false, as users must become members via the join-us view
@@ -45,7 +45,7 @@ const user_post_sign_up = async (req, res) => {
   }
 };
 
-const user_get_join_us = async (req, res) => {
+export const user_get_join_us = async (req, res) => {
   try {
     res.render('user/join-us', {
       script: 'join-us',
@@ -57,7 +57,7 @@ const user_get_join_us = async (req, res) => {
   }
 };
 
-const user_put_join_us = async (req, res) => {
+export const user_put_join_us = async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user._id, { isMember: true });
     res.json({ redirect: '/' });
@@ -66,7 +66,7 @@ const user_put_join_us = async (req, res) => {
   }
 };
 
-const user_get_my_account = async (req, res) => {
+export const user_get_my_account = async (req, res) => {
   try {
     res.render('user/my-account', {
       script: 'my-account',
@@ -78,21 +78,11 @@ const user_get_my_account = async (req, res) => {
   }
 };
 
-const user_put_admin = async (req, res) => {
+export const user_put_admin = async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user._id, { isAdmin: true });
     res.json({ redirect: '/' });
   } catch (err) {
     console.log(`user_put_admin error: ${err}`);
   }
-};
-
-export {
-  user_get_sign_up,
-  user_get_log_in,
-  user_post_sign_up,
-  user_get_join_us,
-  user_put_join_us,
-  user_get_my_account,
-  user_put_admin,
 };

@@ -1,6 +1,6 @@
 import Message from '../models/message.js';
 
-const message_get_create = async (req, res) => {
+export const message_get_create = async (req, res) => {
   try {
     res.render('message/create', {
       script: 'create',
@@ -12,7 +12,7 @@ const message_get_create = async (req, res) => {
   }
 };
 
-const message_post_create = async (req, res) => {
+export const message_post_create = async (req, res) => {
   try {
     const message = new Message(req.body);
     await message.save();
@@ -22,7 +22,7 @@ const message_post_create = async (req, res) => {
   }
 };
 
-const message_delete = async (req, res) => {
+export const message_delete = async (req, res) => {
   try {
     await Message.findByIdAndDelete(req.body._id);
     res.json({ redirect: '/' });
@@ -30,5 +30,3 @@ const message_delete = async (req, res) => {
     console.log(`message_delete error: ${err}`);
   }
 };
-
-export { message_get_create, message_post_create, message_delete };
