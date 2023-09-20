@@ -8,8 +8,12 @@ export const user_get_sign_up = async (req, res) => {
       style: 'sign-up',
       user: req.user,
     });
-  } catch (err) {
-    console.log(`user_get_sign_up error: ${err}`);
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred, please try again or if the issue persists contact the site admin.'
+      );
   }
 };
 
@@ -21,8 +25,12 @@ export const user_get_log_in = async (req, res) => {
       failureMessage: req.session.messages,
       user: req.user,
     });
-  } catch (err) {
-    console.log(` user_get_log_in error: ${err}`);
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred when logging you in, please try again or if the issue persists contact the site admin.'
+      );
   }
 };
 
@@ -40,8 +48,12 @@ export const user_post_sign_up = async (req, res) => {
     delete user.confirmPassword;
     await user.save();
     res.json({ redirect: '/' });
-  } catch (err) {
-    console.log(`user_post_sign_up error: ${err}`);
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred when signing you in, please try again or if the issue persists contact the site admin.'
+      );
   }
 };
 
@@ -52,8 +64,12 @@ export const user_get_join_us = async (req, res) => {
       style: 'join-us',
       user: req.user,
     });
-  } catch (err) {
-    console.log(`user_get_join_us error: ${err}`);
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred, please try again or if the issue persists contact the site admin.'
+      );
   }
 };
 
@@ -61,8 +77,12 @@ export const user_put_join_us = async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user._id, { isMember: true });
     res.json({ redirect: '/' });
-  } catch (err) {
-    console.log(`user_put_join_us error: ${err}`);
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred, please try again or if the issue persists contact the site admin.'
+      );
   }
 };
 
@@ -73,8 +93,12 @@ export const user_get_my_account = async (req, res) => {
       style: 'my-account',
       user: req.user,
     });
-  } catch (err) {
-    console.log(`user_get_my_account error: ${err}`);
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred, please try again or if the issue persists contact the site admin.'
+      );
   }
 };
 
@@ -82,7 +106,11 @@ export const user_put_admin = async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user._id, { isAdmin: true });
     res.json({ redirect: '/' });
-  } catch (err) {
-    console.log(`user_put_admin error: ${err}`);
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred, please try again or if the issue persists contact the site admin.'
+      );
   }
 };

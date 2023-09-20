@@ -7,7 +7,7 @@ export const message_get_create = async (req, res) => {
       style: 'create',
       user: req.user,
     });
-  } catch (err) {
+  } catch {
     res
       .status(500)
       .json(
@@ -21,7 +21,7 @@ export const message_post_create = async (req, res) => {
     const message = new Message(req.body);
     await message.save();
     res.json({ redirect: '/' });
-  } catch (err) {
+  } catch {
     res
       .status(500)
       .json(
@@ -34,7 +34,7 @@ export const message_delete = async (req, res) => {
   try {
     await Message.findByIdAndDelete(req.body._id);
     res.json({ redirect: '/' });
-  } catch (err) {
+  } catch {
     res
       .status(500)
       .json(

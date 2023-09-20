@@ -24,7 +24,7 @@ joinUsForm.addEventListener('submit', async (e) => {
         riddleError.textContent = data[0].msg;
       }
     } catch (err) {
-      console.log(err);
+      riddleError.textContent = err;
     }
   } else {
     riddleError.textContent = 'You shall not pass!';
