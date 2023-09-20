@@ -8,7 +8,11 @@ export const message_get_create = async (req, res) => {
       user: req.user,
     });
   } catch (err) {
-    console.log(`message_get_create error: ${err}`);
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred, please try again or if the issue persists contact the site admin.'
+      );
   }
 };
 
@@ -18,7 +22,11 @@ export const message_post_create = async (req, res) => {
     await message.save();
     res.json({ redirect: '/' });
   } catch (err) {
-    console.log(`message_post_create error: ${err}`);
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred when creating a post, please try again or if the issue persists contact the site admin.'
+      );
   }
 };
 
@@ -27,6 +35,10 @@ export const message_delete = async (req, res) => {
     await Message.findByIdAndDelete(req.body._id);
     res.json({ redirect: '/' });
   } catch (err) {
-    console.log(`message_delete error: ${err}`);
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred when deleting a post, please try again or if the issue persists contact the site admin.'
+      );
   }
 };

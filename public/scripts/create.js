@@ -1,4 +1,5 @@
 const createMessageForm = document.querySelector('.create-message-form');
+const messageError = document.querySelector('.message-error');
 const errorMessages = document.querySelectorAll('.errors');
 
 createMessageForm.addEventListener('submit', async (e) => {
@@ -33,13 +34,17 @@ createMessageForm.addEventListener('submit', async (e) => {
       Array.from(errorMessages).forEach((msg) => {
         msg.textContent = '';
       });
-
-      data.forEach((err) => {
-        const el = document.querySelector(`.${err.path}-error`);
-        el.textContent = err.msg;
-      });
+      // Account for multiple erors
+      if (Array.isArray(data)) {
+        data.forEach((err) => {
+          const el = document.querySelector(`.${err.path}-error`);
+          el.textContent = err.msg;
+        });
+      } else {
+        messageError.textContent = data;
+      }
     }
   } catch (err) {
-    console.log(err);
+    messageError.textContent = err;
   }
 });
