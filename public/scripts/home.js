@@ -1,4 +1,5 @@
 const deleteButton = document.querySelector('.delete-button');
+const deleteError = document.querySelector('.delete-error');
 
 if (deleteButton === null) {
   // do nothing, user doesn't have admin permissions to delete posts
@@ -20,9 +21,11 @@ if (deleteButton === null) {
 
       if (response.ok) {
         window.location.href = data.redirect;
+      } else {
+        deleteError.textContent = data;
       }
     } catch (err) {
-      console.log(err);
+      deleteError.textContent = err;
     }
   });
 }
