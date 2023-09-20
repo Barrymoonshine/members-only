@@ -1,8 +1,10 @@
 const logOutButton = document.querySelector('.log-out-button');
 const adminButton = document.querySelector('.admin-button');
+const myAccountError = document.querySelector('.my-account-error');
 
 logOutButton.addEventListener('click', async () => {
   try {
+    myAccountError.textContent = '';
     const response = await fetch('/user/log-out', {
       method: 'POST',
     });
@@ -13,7 +15,7 @@ logOutButton.addEventListener('click', async () => {
       window.location.href = data.redirect;
     }
   } catch (err) {
-    console.log(err);
+    myAccountError.textContent = err;
   }
 });
 
@@ -30,9 +32,11 @@ if (adminButton === null) {
 
       if (response.ok) {
         window.location.href = data.redirect;
+      } else {
+        myAccountError.textContent = data;
       }
     } catch (err) {
-      console.log(err);
+      myAccountError.textContent = err;
     }
   });
 }
