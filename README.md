@@ -4,7 +4,7 @@ Live link: https://rough-wave-6662.fly.dev/
 
 ## Summary
 
-ClubLand is an exclusive club house in which anyone can view posts, but only logged in users can create posts. To see who crated the posts users must answer a riddle to qualify for membership status (answer: friend), and all users can sign up for admin permissions to delete posts.
+ClubLand is an exclusive club house in which anyone can view posts, but only logged in users can create posts. To see who created the posts users must answer a riddle to qualify for membership status (answer: friend), and all users can sign up for admin permissions to delete posts.
 
 This app was built to primarily practice back-end validation with a focus on authentication and user permissions management.
 

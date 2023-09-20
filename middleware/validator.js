@@ -1,6 +1,6 @@
 import { check, validationResult } from 'express-validator';
 
-const signUpValidation = () => [
+export const signUpValidation = () => [
   check('firstName')
     .isString()
     .notEmpty()
@@ -30,7 +30,7 @@ const signUpValidation = () => [
     .withMessage('Passwords do not match'),
 ];
 
-const joinUsValidation = () => [
+export const joinUsValidation = () => [
   check('riddle')
     .isString()
     .notEmpty()
@@ -43,16 +43,14 @@ const joinUsValidation = () => [
     .withMessage('You shall not pass!'),
 ];
 
-const messageValidation = () => [
+export const messageValidation = () => [
   check('message').isString().notEmpty().withMessage('Please enter a message'),
 ];
 
-const validate = (req, res, next) => {
+export const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
     return next();
   }
   return res.status(422).json(errors.array());
 };
-
-export { signUpValidation, joinUsValidation, messageValidation, validate };
