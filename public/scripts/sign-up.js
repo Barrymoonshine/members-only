@@ -41,13 +41,18 @@ signUpForm.addEventListener('submit', async (e) => {
           msg.textContent = '';
         });
 
-        data.forEach((err) => {
-          const el = document.querySelector(`.${err.path}-error`);
-          el.textContent = err.msg;
-        });
+        // Account for multiple erors
+        if (Array.isArray(data)) {
+          data.forEach((err) => {
+            const el = document.querySelector(`.${err.path}-error`);
+            el.textContent = err.msg;
+          });
+        } else {
+          confirmPasswordError.textContent = data;
+        }
       }
     } catch (err) {
-      console.log(err);
+      confirmPasswordError.textContent = err;
     }
   }
 });
