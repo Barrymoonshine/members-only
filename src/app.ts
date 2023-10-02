@@ -1,5 +1,6 @@
 import express from 'express';
 import 'dotenv/config';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
@@ -27,7 +28,14 @@ app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-app.use(express.static('public'));
+// NOTE URL for front end
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    methods: ['POST', 'GET', 'DELETE', 'PUT', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRoutes);
 // app.use('/user', userRoutes);
