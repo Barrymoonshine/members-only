@@ -1,4 +1,5 @@
 import { check, validationResult } from 'express-validator';
+import { NextFunction, Request, Response } from 'express';
 
 export const signUpValidation = () => [
   check('firstName')
@@ -47,7 +48,7 @@ export const messageValidation = () => [
   check('message').isString().notEmpty().withMessage('Please enter a message'),
 ];
 
-export const validate = (req, res, next) => {
+export const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
     return next();
