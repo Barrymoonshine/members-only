@@ -1,5 +1,4 @@
 import passport from 'passport';
-import { NextFunction, Request, Response } from 'express';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcryptjs';
 import User from '../models/user';
@@ -36,15 +35,4 @@ passport.deserializeUser(async (id: Types.ObjectId, done) => {
   }
 });
 
-const logOut =
-  () =>
-  (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    req.logout((err) => {
-      if (err) {
-        return next(err);
-      }
-      res.json({ redirect: '/' });
-    });
-  };
-
-export { passport, logOut };
+export { passport };

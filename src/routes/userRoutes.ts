@@ -13,7 +13,7 @@ import {
   joinUsValidation,
   validate,
 } from '../middleware/validator.js';
-import { passport, logOut } from '../middleware/pasport';
+import { passport } from '../middleware/passport';
 
 const routes = express.Router();
 
@@ -37,8 +37,6 @@ routes.get('/join-us', user_get_join_us);
 routes.put('/join-us', joinUsValidation(), validate, user_put_join_us);
 
 routes.get('/my-account', user_get_my_account);
-
-routes.post('/log-out', logOut());
 
 routes.put('/make-admin', user_put_admin);
 
