@@ -48,7 +48,11 @@ export const messageValidation = () => [
   check('message').isString().notEmpty().withMessage('Please enter a message'),
 ];
 
-export const validate = (req: Request, res: Response, next: NextFunction) => {
+export const validate = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
     return next();

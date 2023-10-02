@@ -1,10 +1,12 @@
 import passport from 'passport';
+import { NextFunction, Request, Response } from 'express';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcryptjs';
-import User from '../models/user.js';
+import User from '../models/user';
+import { Types } from 'mongoose';
 
 passport.use(
-  new LocalStrategy(async (username, password, done) => {
+  new LocalStrategy(async (username: String, password: String, done) => {
     try {
       const user = await User.findOne({ username });
       if (!user) {
@@ -21,11 +23,11 @@ passport.use(
   })
 );
 
-passport.serializeUser((user, done) => {
+passport.serializeUser((user: any, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (id: Types.ObjectId, done) => {
   try {
     const user = await User.findById(id);
     done(null, user);
@@ -34,13 +36,15 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-const logOut = () => (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.json({ redirect: '/' });
-  });
-};
+const logOut =
+  () =>
+  (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.json({ redirect: '/' });
+    });
+  };
 
 export { passport, logOut };
