@@ -1,5 +1,7 @@
-import { Schema, model } from 'mongoose';
-const messageSchema = new Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+const messageSchema = new mongoose_1.Schema({
     username: {
         type: String,
         required: true,
@@ -13,5 +15,5 @@ const messageSchema = new Schema({
         required: true,
     },
 }, { timestamps: true });
-const Message = model('Messages', messageSchema);
-export default Message;
+const Message = (0, mongoose_1.model)('Messages', messageSchema);
+exports.default = Message;

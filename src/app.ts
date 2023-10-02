@@ -4,8 +4,8 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
 import indexRoutes from './routes/indexRoutes';
-import userRoutes from './routes/userRoutes';
-import messageRoutes from './routes/messageRoutes';
+// import userRoutes from './routes/userRoutes';
+// import messageRoutes from './routes/messageRoutes';
 
 const app = express();
 
@@ -30,5 +30,5 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRoutes);
-app.use('/user', userRoutes);
-app.use('/message', messageRoutes);
+// app.use('/user', userRoutes);
+// app.use('/message', messageRoutes);
