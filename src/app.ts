@@ -3,9 +3,9 @@ import 'dotenv/config';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
-import userRoutes from './routes/userRoutes.js';
-import messageRoutes from './routes/messageRoutes.js';
-import Message from './models/message.js';
+import indexRoutes from './routes/indexRoutes';
+import userRoutes from './routes/userRoutes';
+import messageRoutes from './routes/messageRoutes';
 
 const app = express();
 
@@ -23,29 +23,12 @@ const connectToDb = async () => {
 };
 connectToDb();
 
-app.set('view engine', 'ejs');
-
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
+app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 app.use('/message', messageRoutes);
-
-app.get('/', async (req, res) => {
-  try {
-    const messages = await Message.find().sort({
-      createdAt: -1,
-    });
-    res.render('home', {
-      script: 'home',
-      user: req.user,
-      messages,
-      style: 'home',
-    });
-  } catch (err) {
-    console.log(`home route error: ${err}`);
-  }
-});

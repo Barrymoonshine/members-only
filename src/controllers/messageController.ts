@@ -1,6 +1,10 @@
+import { Request, Response } from 'express';
 import Message from '../models/message.js';
 
-export const message_get_create = async (req, res) => {
+export const message_get_create = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     res.render('message/create', {
       script: 'create',
@@ -16,7 +20,10 @@ export const message_get_create = async (req, res) => {
   }
 };
 
-export const message_post_create = async (req, res) => {
+export const message_post_create = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const message = new Message(req.body);
     await message.save();
@@ -30,7 +37,10 @@ export const message_post_create = async (req, res) => {
   }
 };
 
-export const message_delete = async (req, res) => {
+export const message_delete = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     await Message.findByIdAndDelete(req.body._id);
     res.json({ redirect: '/' });

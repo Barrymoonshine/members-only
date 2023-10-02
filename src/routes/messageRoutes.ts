@@ -3,8 +3,8 @@ import {
   message_get_create,
   message_post_create,
   message_delete,
-} from '../controllers/messageController.js';
-import { messageValidation, validate } from '../middleware/validator.js';
+} from '../controllers/messageController';
+import { messageValidation, validate } from '../middleware/validator';
 
 const routes = express.Router();
 

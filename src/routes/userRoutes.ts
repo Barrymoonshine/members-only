@@ -7,13 +7,13 @@ import {
   user_put_join_us,
   user_get_my_account,
   user_put_admin,
-} from '../controllers/userController.js';
+} from '../controllers/userController';
 import {
   signUpValidation,
   joinUsValidation,
   validate,
 } from '../middleware/validator.js';
-import { passport, logOut } from '../middleware/pasport.js';
+import { passport, logOut } from '../middleware/pasport';
 
 const routes = express.Router();
 
