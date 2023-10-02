@@ -1,8 +1,13 @@
-import mongoose from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 
-const { Schema } = mongoose;
+type MessageModel = {
+  _id: Types.ObjectId;
+  username: string;
+  title: string;
+  message: string;
+};
 
-const messageSchema = new Schema(
+const messageSchema = new Schema<MessageModel>(
   {
     username: {
       type: String,
@@ -20,6 +25,6 @@ const messageSchema = new Schema(
   { timestamps: true }
 );
 
-const Message = mongoose.model('Messages', messageSchema);
+const Message = model<MessageModel>('Messages', messageSchema);
 
 export default Message;
