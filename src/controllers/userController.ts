@@ -11,7 +11,7 @@ declare module 'express-session' {
 
 export const log_in = async (req: Request, res: Response): Promise<void> => {
   try {
-    res.json('Success user has been logged in');
+    res.json(req.user);
   } catch {
     res
       .status(500)

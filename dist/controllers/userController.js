@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.log_in_failure = exports.log_in = void 0;
 const log_in = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.json('Success user has been logged in');
+        res.json(req.user);
     }
     catch (_a) {
         res
