@@ -12,7 +12,6 @@ const routes = express.Router();
 routes.post(
   '/',
   passport.authenticate('local', {
-    failureMessage: true,
     failureRedirect: '/user/failure',
   }),
   log_in

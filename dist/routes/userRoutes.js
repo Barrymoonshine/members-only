@@ -13,7 +13,6 @@ const userController_1 = require("../controllers/userController");
 const passport_1 = __importDefault(require("../middleware/passport"));
 const routes = express_1.default.Router();
 routes.post('/', passport_1.default.authenticate('local', {
-    failureMessage: true,
     failureRedirect: '/user/failure',
 }), userController_1.log_in);
 routes.get('/failure', userController_1.log_in_failure);

@@ -13,11 +13,11 @@ passport.use(
         req.session.messages = [];
         const user = await User.findOne({ username });
         if (!user) {
-          return done(null, false, { message: 'Incorrect username' });
+          return done(null, false);
         }
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-          return done(null, false, { message: 'Incorrect password' });
+          return done(null, false);
         }
         return done(null, user);
       } catch (err) {

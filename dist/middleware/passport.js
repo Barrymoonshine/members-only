@@ -20,14 +20,13 @@ passport_1.default.use(new passport_local_1.Strategy({ passReqToCallback: true }
     try {
         // Clear existing error messages from the previous session
         req.session.messages = [];
-        console.log('req.session.messages', req.session.messages);
         const user = yield user_1.default.findOne({ username });
         if (!user) {
-            return done(null, false, { message: 'Incorrect username' });
+            return done(null, false);
         }
         const match = yield bcryptjs_1.default.compare(password, user.password);
         if (!match) {
-            return done(null, false, { message: 'Incorrect password' });
+            return done(null, false);
         }
         return done(null, user);
     }
