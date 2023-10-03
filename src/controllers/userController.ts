@@ -26,7 +26,7 @@ export const log_in_failure = async (
   res: Response
 ): Promise<void> => {
   try {
-    res.status(401).json(req.session.messages);
+    res.status(401).json({ errors: req.session.messages });
   } catch {
     res
       .status(500)

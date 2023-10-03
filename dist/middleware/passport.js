@@ -16,8 +16,11 @@ const passport_1 = __importDefault(require("passport"));
 const passport_local_1 = require("passport-local");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_1 = __importDefault(require("../models/user"));
-passport_1.default.use(new passport_local_1.Strategy((username, password, done) => __awaiter(void 0, void 0, void 0, function* () {
+passport_1.default.use(new passport_local_1.Strategy({ passReqToCallback: true }, (req, username, password, done) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        // Clear existing error messages from the previous session
+        req.session.messages = [];
+        console.log('req.session.messages', req.session.messages);
         const user = yield user_1.default.findOne({ username });
         if (!user) {
             return done(null, false, { message: 'Incorrect username' });

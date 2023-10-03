@@ -23,7 +23,8 @@ const log_in = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.log_in = log_in;
 const log_in_failure = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.status(401).json(req.session.messages);
+        console.log('req.session.messages ', req.session.messages);
+        res.status(401).json({ errors: req.session.messages });
     }
     catch (_b) {
         res
