@@ -1,7 +1,37 @@
 "use strict";
-// import { Request, Response } from 'express';
-// import bcrypt from 'bcryptjs';
-// import User from '../models/user.js';
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.log_in_failure = exports.log_in = void 0;
+const log_in = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.json('Success user has been logged in');
+    }
+    catch (_a) {
+        res
+            .status(500)
+            .json('An internal server error occurred when logging you in, please try again or if the issue persists contact the site admin.');
+    }
+});
+exports.log_in = log_in;
+const log_in_failure = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.status(401).json(req.session.messages);
+    }
+    catch (_b) {
+        res
+            .status(500)
+            .json('An internal server error occurred, please try again or if the issue persists contact the site admin.');
+    }
+});
+exports.log_in_failure = log_in_failure;
 // export const user_get_sign_up = async (
 //   req: Request,
 //   res: Response
@@ -17,25 +47,6 @@
 //       .status(500)
 //       .json(
 //         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
-// export const user_get_log_in = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     res.render('user/log-in', {
-//       script: null,
-//       style: 'log-in',
-//       failureMessage: req.session.messages,
-//       user: req.user,
-//     });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred when logging you in, please try again or if the issue persists contact the site admin.'
 //       );
 //   }
 // };

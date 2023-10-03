@@ -1,6 +1,40 @@
-// import { Request, Response } from 'express';
+import { Request, Response } from 'express';
 // import bcrypt from 'bcryptjs';
 // import User from '../models/user.js';
+
+// Extend session interface to include messages property (used by Passport for failure messages)
+declare module 'express-session' {
+  interface Session {
+    messages: any[];
+  }
+}
+
+export const log_in = async (req: Request, res: Response): Promise<void> => {
+  try {
+    res.json('Success user has been logged in');
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred when logging you in, please try again or if the issue persists contact the site admin.'
+      );
+  }
+};
+
+export const log_in_failure = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    res.status(401).json(req.session.messages);
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred, please try again or if the issue persists contact the site admin.'
+      );
+  }
+};
 
 // export const user_get_sign_up = async (
 //   req: Request,
@@ -17,26 +51,6 @@
 //       .status(500)
 //       .json(
 //         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
-
-// export const user_get_log_in = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     res.render('user/log-in', {
-//       script: null,
-//       style: 'log-in',
-//       failureMessage: req.session.messages,
-//       user: req.user,
-//     });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred when logging you in, please try again or if the issue persists contact the site admin.'
 //       );
 //   }
 // };
