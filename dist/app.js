@@ -18,9 +18,8 @@ const cors_1 = __importDefault(require("cors"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const passport_1 = __importDefault(require("passport"));
 const express_session_1 = __importDefault(require("express-session"));
-const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
-// import messageRoutes from './routes/messageRoutes';
+const messageRoutes_1 = __importDefault(require("./routes/messageRoutes"));
 const app = (0, express_1.default)();
 const dbURI = `mongodb+srv://${process.env.DB_CREDENTIALS}@cluster0.wym9xjg.mongodb.net/members-only?retryWrites=true&w=majority`;
 const connectToDb = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -39,13 +38,12 @@ app.use((0, express_session_1.default)({ secret: 'cats', resave: false, saveUnin
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use(express_1.default.json());
-// NOTE add URL for front end
+// NOTE add URL for front end when launched
 app.use((0, cors_1.default)({
     origin: ['http://localhost:5173', 'http://localhost:3000'],
     methods: ['POST', 'GET', 'DELETE', 'PUT', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use('/', indexRoutes_1.default);
 app.use('/user', userRoutes_1.default);
-// app.use('/message', messageRoutes);
+app.use('/message', messageRoutes_1.default);

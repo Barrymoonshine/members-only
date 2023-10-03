@@ -4,9 +4,8 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
-import indexRoutes from './routes/indexRoutes';
 import userRoutes from './routes/userRoutes';
-// import messageRoutes from './routes/messageRoutes';
+import messageRoutes from './routes/messageRoutes';
 
 const app = express();
 
@@ -28,7 +27,7 @@ app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-// NOTE add URL for front end
+// NOTE add URL for front end when launched
 app.use(
   cors({
     origin: ['http://localhost:5173', 'http://localhost:3000'],
@@ -37,6 +36,5 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: true }));
-app.use('/', indexRoutes);
 app.use('/user', userRoutes);
-// app.use('/message', messageRoutes);
+app.use('/message', messageRoutes);

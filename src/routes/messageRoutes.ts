@@ -1,12 +1,10 @@
-// import express from 'express';
-// import {
-//   message_get_create,
-//   message_post_create,
-//   message_delete,
-// } from '../controllers/messageController';
+import express from 'express';
+import get_all_messages from '../controllers/messageController';
 // import { messageValidation, validate } from '../middleware/validator';
 
-// const routes = express.Router();
+const routes = express.Router();
+
+routes.get('/', get_all_messages);
 
 // routes.get('/create', message_get_create);
 
@@ -14,4 +12,4 @@
 
 // routes.post('/delete', message_delete);
 
-// export default routes;
+export default routes;
