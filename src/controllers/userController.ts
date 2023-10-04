@@ -44,7 +44,7 @@ export const sign_up = async (req: Request, res: Response): Promise<void> => {
       password: hashedPassword,
     });
     await user.save();
-    res.json('Success user signed up');
+    res.json(user);
   } catch {
     res
       .status(500)
@@ -54,40 +54,18 @@ export const sign_up = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-// export const user_get_join_us = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     res.render('user/join-us', {
-//       script: 'join-us',
-//       style: 'join-us',
-//       user: req.user,
-//     });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
-
-// export const user_put_join_us = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     await User.findByIdAndUpdate(req.user._id, { isMember: true });
-//     res.json({ redirect: '/' });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
+export const join_us = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const user = await User.findByIdAndUpdate(req.body.id, { isMember: true });
+    res.json(user);
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred, please try again or if the issue persists contact the site admin.'
+      );
+  }
+};
 
 // export const user_get_my_account = async (
 //   req: Request,

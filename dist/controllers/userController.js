@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sign_up = exports.log_in_failure = exports.log_in = void 0;
+exports.join_us = exports.sign_up = exports.log_in_failure = exports.log_in = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_js_1 = __importDefault(require("../models/user.js"));
 const log_in = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -42,7 +42,7 @@ const sign_up = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const hashedPassword = yield bcryptjs_1.default.hash(req.body.password, 10);
         const user = new user_js_1.default(Object.assign(Object.assign({}, req.body), { password: hashedPassword }));
         yield user.save();
-        res.json('Success user signed up');
+        res.json(user);
     }
     catch (_c) {
         res
@@ -51,39 +51,18 @@ const sign_up = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.sign_up = sign_up;
-// export const user_get_join_us = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     res.render('user/join-us', {
-//       script: 'join-us',
-//       style: 'join-us',
-//       user: req.user,
-//     });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
-// export const user_put_join_us = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     await User.findByIdAndUpdate(req.user._id, { isMember: true });
-//     res.json({ redirect: '/' });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
+const join_us = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield user_js_1.default.findByIdAndUpdate(req.body.id, { isMember: true });
+        res.json(user);
+    }
+    catch (_d) {
+        res
+            .status(500)
+            .json('An internal server error occurred, please try again or if the issue persists contact the site admin.');
+    }
+});
+exports.join_us = join_us;
 // export const user_get_my_account = async (
 //   req: Request,
 //   res: Response
