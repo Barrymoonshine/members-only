@@ -39,6 +39,7 @@ export const joinUsValidation = () => [
 ];
 
 export const messageValidation = () => [
+  check('title').isString().notEmpty().withMessage('Please enter a title'),
   check('message').isString().notEmpty().withMessage('Please enter a message'),
 ];
 

@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.create_message = exports.get_all_messages = void 0;
 const message_1 = __importDefault(require("../models/message"));
 const get_all_messages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -24,41 +25,23 @@ const get_all_messages = (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.status(500).json('Server error');
     }
 });
-exports.default = get_all_messages;
-// export const message_get_create = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     res.render('message/create', {
-//       script: 'create',
-//       style: 'create',
-//       user: req.user,
-//     });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
-// export const message_post_create = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     const message = new Message(req.body);
-//     await message.save();
-//     res.json({ redirect: '/' });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred when creating a post, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
+exports.get_all_messages = get_all_messages;
+const create_message = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const message = new message_1.default(req.body);
+        yield message.save();
+        const messages = yield message_1.default.find().sort({
+            createdAt: -1,
+        });
+        res.json(messages);
+    }
+    catch (_a) {
+        res
+            .status(500)
+            .json('An internal server error occurred when creating a post, please try again or if the issue persists contact the site admin.');
+    }
+});
+exports.create_message = create_message;
 // export const message_delete = async (
 //   req: Request,
 //   res: Response

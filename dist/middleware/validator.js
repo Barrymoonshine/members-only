@@ -40,6 +40,7 @@ const joinUsValidation = () => [
 ];
 exports.joinUsValidation = joinUsValidation;
 const messageValidation = () => [
+    (0, express_validator_1.check)('title').isString().notEmpty().withMessage('Please enter a title'),
     (0, express_validator_1.check)('message').isString().notEmpty().withMessage('Please enter a message'),
 ];
 exports.messageValidation = messageValidation;

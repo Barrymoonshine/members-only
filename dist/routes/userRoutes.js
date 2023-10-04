@@ -13,7 +13,7 @@ routes.post('/', passport_1.default.authenticate('local', {
 }), userController_1.log_in);
 routes.get('/failure', userController_1.log_in_failure);
 routes.post('/new', (0, validator_js_1.signUpValidation)(), validator_js_1.validate, userController_1.sign_up);
-routes.put('/member', (0, validator_js_1.joinUsValidation)(), validator_js_1.validate, userController_1.join_us);
+routes.patch('/', (0, validator_js_1.joinUsValidation)(), validator_js_1.validate, userController_1.join_us);
 // routes.get('/my-account', user_get_my_account);
 // routes.put('/make-admin', user_put_admin);
 exports.default = routes;
