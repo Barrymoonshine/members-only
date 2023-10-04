@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-// import bcrypt from 'bcryptjs';
-// import User from '../models/user.js';
+import bcrypt from 'bcryptjs';
+import User from '../models/user.js';
 
 // Extend session interface to include messages property (used by Passport for failure messages)
 declare module 'express-session' {
@@ -36,50 +36,23 @@ export const log_in_failure = async (
   }
 };
 
-// export const user_get_sign_up = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     res.render('user/sign-up', {
-//       script: 'sign-up',
-//       style: 'sign-up',
-//       user: req.user,
-//     });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
-
-// export const user_post_sign_up = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//     // Membership status initially false, as users must become members via the join-us view
-//     const user = new User({
-//       ...req.body,
-//       password: hashedPassword,
-//       isMember: false,
-//     });
-
-//     // Delete confirm password as not needed in DB
-//     delete user.confirmPassword;
-//     await user.save();
-//     res.json({ redirect: '/' });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred when signing you in, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
+export const sign_up = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const user = new User({
+      ...req.body,
+      password: hashedPassword,
+    });
+    await user.save();
+    res.json('Success user signed up');
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred when signing you in, please try again or if the issue persists contact the site admin.'
+      );
+  }
+};
 
 // export const user_get_join_us = async (
 //   req: Request,

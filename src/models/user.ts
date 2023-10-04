@@ -33,6 +33,7 @@ const userSchema = new Schema<UserModel>({
   },
   isMember: {
     type: Boolean,
+    default: false,
     required: true,
   },
 });

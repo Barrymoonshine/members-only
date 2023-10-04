@@ -8,8 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.log_in_failure = exports.log_in = void 0;
+exports.sign_up = exports.log_in_failure = exports.log_in = void 0;
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const user_js_1 = __importDefault(require("../models/user.js"));
 const log_in = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         res.json(req.user);
@@ -32,48 +37,20 @@ const log_in_failure = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.log_in_failure = log_in_failure;
-// export const user_get_sign_up = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     res.render('user/sign-up', {
-//       script: 'sign-up',
-//       style: 'sign-up',
-//       user: req.user,
-//     });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
-// export const user_post_sign_up = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//     // Membership status initially false, as users must become members via the join-us view
-//     const user = new User({
-//       ...req.body,
-//       password: hashedPassword,
-//       isMember: false,
-//     });
-//     // Delete confirm password as not needed in DB
-//     delete user.confirmPassword;
-//     await user.save();
-//     res.json({ redirect: '/' });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred when signing you in, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
+const sign_up = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const hashedPassword = yield bcryptjs_1.default.hash(req.body.password, 10);
+        const user = new user_js_1.default(Object.assign(Object.assign({}, req.body), { password: hashedPassword }));
+        yield user.save();
+        res.json('Success user signed up');
+    }
+    catch (_c) {
+        res
+            .status(500)
+            .json('An internal server error occurred when signing you in, please try again or if the issue persists contact the site admin.');
+    }
+});
+exports.sign_up = sign_up;
 // export const user_get_join_us = async (
 //   req: Request,
 //   res: Response

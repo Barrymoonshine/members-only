@@ -1,10 +1,6 @@
 import express from 'express';
-import { log_in, log_in_failure } from '../controllers/userController';
-// import {
-//   signUpValidation,
-//   joinUsValidation,
-//   validate,
-// } from '../middleware/validator.js';
+import { log_in, log_in_failure, sign_up } from '../controllers/userController';
+import { signUpValidation, validate } from '../middleware/validator.js';
 import passport from '../middleware/passport';
 
 const routes = express.Router();
@@ -19,9 +15,7 @@ routes.post(
 
 routes.get('/failure', log_in_failure);
 
-// routes.get('/sign-up', user_get_sign_up);
-
-// routes.post('/sign-up', signUpValidation(), validate, user_post_sign_up);
+routes.post('/new', signUpValidation(), validate, sign_up);
 
 // routes.get('/join-us', user_get_join_us);
 

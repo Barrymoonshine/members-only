@@ -24,6 +24,7 @@ const userSchema = new mongoose_1.Schema({
     },
     isMember: {
         type: Boolean,
+        default: false,
         required: true,
     },
 });
