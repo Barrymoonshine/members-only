@@ -38,7 +38,6 @@ app.use((0, express_session_1.default)({ secret: 'cats', resave: false, saveUnin
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use(express_1.default.json());
-// NOTE add URL for front end when launched
 app.use((0, cors_1.default)({
     origin: [
         'http://localhost:5173',
