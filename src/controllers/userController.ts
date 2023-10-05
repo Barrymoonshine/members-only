@@ -65,7 +65,7 @@ export const toggle_admin = async (
   res: Response
 ): Promise<void> => {
   try {
-    const user = await User.findByIdAndUpdate(req.body.id, {
+    await User.findByIdAndUpdate(req.body.id, {
       isAdmin: req.body.isAdmin,
     });
     res.json('Success Admin status update');

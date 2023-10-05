@@ -35,18 +35,19 @@ export const create_message = async (
   }
 };
 
-// export const message_delete = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     await Message.findByIdAndDelete(req.body._id);
-//     res.json({ redirect: '/' });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred when deleting a post, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
+export const delete_message = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+    await Message.findByIdAndDelete(id);
+    res.json('Success, message delete');
+  } catch {
+    res
+      .status(500)
+      .json(
+        'An internal server error occurred when deleting a post, please try again or if the issue persists contact the site admin.'
+      );
+  }
+};

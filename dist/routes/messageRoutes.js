@@ -9,5 +9,5 @@ const validator_1 = require("../middleware/validator");
 const routes = express_1.default.Router();
 routes.get('/', messageController_1.get_all_messages);
 routes.post('/', (0, validator_1.messageValidation)(), validator_1.validate, messageController_1.create_message);
-// routes.post('/delete', message_delete);
+routes.delete('/:id', messageController_1.delete_message);
 exports.default = routes;

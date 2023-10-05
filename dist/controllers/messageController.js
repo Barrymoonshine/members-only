@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create_message = exports.get_all_messages = void 0;
+exports.delete_message = exports.create_message = exports.get_all_messages = void 0;
 const message_1 = __importDefault(require("../models/message"));
 const get_all_messages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -42,18 +42,16 @@ const create_message = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.create_message = create_message;
-// export const message_delete = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     await Message.findByIdAndDelete(req.body._id);
-//     res.json({ redirect: '/' });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred when deleting a post, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
+const delete_message = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        yield message_1.default.findByIdAndDelete(id);
+        res.json('Success, message delete');
+    }
+    catch (_b) {
+        res
+            .status(500)
+            .json('An internal server error occurred when deleting a post, please try again or if the issue persists contact the site admin.');
+    }
+});
+exports.delete_message = delete_message;

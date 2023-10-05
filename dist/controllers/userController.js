@@ -65,10 +65,10 @@ const join_us = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.join_us = join_us;
 const toggle_admin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user = yield user_js_1.default.findByIdAndUpdate(req.body.id, {
+        yield user_js_1.default.findByIdAndUpdate(req.body.id, {
             isAdmin: req.body.isAdmin,
         });
-        res.json({ user });
+        res.json('Success Admin status update');
     }
     catch (_e) {
         res
