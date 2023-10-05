@@ -27,7 +27,6 @@ app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-// NOTE add URL for front end when launched
 app.use(
   cors({
     origin: [

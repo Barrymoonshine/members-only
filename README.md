@@ -1,28 +1,18 @@
 # Members Only
 
-Live link: https://rough-wave-6662.fly.dev/
-
 ## Summary
 
-ClubLand is an exclusive club house in which anyone can view posts, but only logged in users can create posts. To see who created the posts users must answer a riddle to qualify for membership status (answer: friend), and all users can sign up for admin permissions to delete posts.
+This is the back-end/server part of the Members Only or Club Land Client project.
 
-This app was built to primarily practice back-end validation with a focus on authentication and user permissions management.
+This app was built using MongoDB/Mongoose, ExpressJS and NodeJS and is the back-end/server for the front-end/client which was also built as part of this project, and can be found [here](https://github.com/Barrymoonshine/members-only-client).
 
 Hosted and deployed on fly.io.
 
 ## Key skills employed
 
-**Express & Node JS**
-
-- Imported the Express Session package to create user sessions to track permissions throughout the application
-- Accessing an authenticated user's details using the user property on the request object
-
-**Passport**
-
-- Created and configured a `LocalStrategy` to validate username and password
-- Storing the user's details on the user property of the request object for use throughout the application using the `deserializeUser` function
-- Logging authenticated users out of their session using the `logout` method
-
-**bcrypt**
-
+- Server side static type checking with TypeScript
+- Model type checking with custom `types` ensuring that returned data matches the expected shape
+- Utilised the `Request`, `Response` and `NextFunction` types from Express to ensure that functions receive the expected data
+- Specifying that controller functions return a function that doesn't resolve to a specific value with `Promise<void`
+- Created and configured a `LocalStrategy` to validate username and password with the Passport package
 - Password encryption and hashing utilising the bcrypt package to securely store passwords
