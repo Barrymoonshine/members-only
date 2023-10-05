@@ -18,3 +18,4 @@ Hosted and deployed on fly.io.
 - Specifying that controller functions don't resolve to a specific value with `Promise<void>`
 - Created and configured a `LocalStrategy` to validate username and password with the Passport package
 - Password encryption and hashing utilising the bcrypt package to securely store passwords
+- API routes desgined in accordance with RESTful best practices
