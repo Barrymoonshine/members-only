@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.join_us = exports.sign_up = exports.log_in_failure = exports.log_in = void 0;
+exports.toggle_admin = exports.join_us = exports.sign_up = exports.log_in_failure = exports.log_in = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_js_1 = __importDefault(require("../models/user.js"));
 const log_in = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -63,36 +63,17 @@ const join_us = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.join_us = join_us;
-// export const user_get_my_account = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     res.render('user/my-account', {
-//       script: 'my-account',
-//       style: 'my-account',
-//       user: req.user,
-//     });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
-// export const user_put_admin = async (
-//   req: Request,
-//   res: Response
-// ): Promise<void> => {
-//   try {
-//     await User.findByIdAndUpdate(req.user._id, { isAdmin: true });
-//     res.json({ redirect: '/' });
-//   } catch {
-//     res
-//       .status(500)
-//       .json(
-//         'An internal server error occurred, please try again or if the issue persists contact the site admin.'
-//       );
-//   }
-// };
+const toggle_admin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield user_js_1.default.findByIdAndUpdate(req.body.id, {
+            isAdmin: req.body.isAdmin,
+        });
+        res.json({ user });
+    }
+    catch (_e) {
+        res
+            .status(500)
+            .json('An internal server error occurred, please try again or if the issue persists contact the site admin.');
+    }
+});
+exports.toggle_admin = toggle_admin;

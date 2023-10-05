@@ -9,8 +9,6 @@ passport.use(
     { passReqToCallback: true },
     async (req, username: string, password: string, done) => {
       try {
-        // Clear existing error messages from the previous session
-        req.session.messages = [];
         const user = await User.findOne({ username });
         if (!user) {
           return done(null, false);
@@ -27,7 +25,7 @@ passport.use(
   )
 );
 
-// Property id does not exist on type User, any added so TS doesn't perform any type checking
+// Property id does not exist on type user, any added so TS doesn't perform any type checking
 passport.serializeUser((user: any, done): void => {
   done(null, user.id);
 });

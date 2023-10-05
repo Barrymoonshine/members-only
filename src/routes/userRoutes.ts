@@ -4,6 +4,7 @@ import {
   log_in_failure,
   sign_up,
   join_us,
+  toggle_admin,
 } from '../controllers/userController';
 import {
   signUpValidation,
@@ -28,8 +29,6 @@ routes.post('/new', signUpValidation(), validate, sign_up);
 
 routes.patch('/', joinUsValidation(), validate, join_us);
 
-// routes.get('/my-account', user_get_my_account);
-
-// routes.put('/make-admin', user_put_admin);
+routes.patch('/admin', toggle_admin);
 
 export default routes;

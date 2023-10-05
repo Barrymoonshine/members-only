@@ -18,8 +18,6 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_1 = __importDefault(require("../models/user"));
 passport_1.default.use(new passport_local_1.Strategy({ passReqToCallback: true }, (req, username, password, done) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Clear existing error messages from the previous session
-        req.session.messages = [];
         const user = yield user_1.default.findOne({ username });
         if (!user) {
             return done(null, false);
@@ -34,7 +32,7 @@ passport_1.default.use(new passport_local_1.Strategy({ passReqToCallback: true }
         return done(err);
     }
 })));
-// Property id does not exist on type User, any added so TS doesn't perform any type checking
+// Property id does not exist on type user, any added so TS doesn't perform any type checking
 passport_1.default.serializeUser((user, done) => {
     done(null, user.id);
 });
