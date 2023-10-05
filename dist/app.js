@@ -40,7 +40,11 @@ app.use(passport_1.default.session());
 app.use(express_1.default.json());
 // NOTE add URL for front end when launched
 app.use((0, cors_1.default)({
-    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:3000',
+        'https://members-only-client.vercel.app',
+    ],
     methods: ['POST', 'GET', 'DELETE', 'PUT', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));

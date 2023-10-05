@@ -47,7 +47,7 @@ const sign_up = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     catch (_c) {
         res
             .status(500)
-            .json('An internal server error occurred when signing you in, please try again or if the issue persists contact the site admin.');
+            .json('An internal server error occurred when signing you up, please try again or if the issue persists contact the site admin.');
     }
 });
 exports.sign_up = sign_up;

@@ -42,7 +42,7 @@ export const sign_up = async (req: Request, res: Response): Promise<void> => {
     res
       .status(500)
       .json(
-        'An internal server error occurred when signing you in, please try again or if the issue persists contact the site admin.'
+        'An internal server error occurred when signing you up, please try again or if the issue persists contact the site admin.'
       );
   }
 };

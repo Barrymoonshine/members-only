@@ -30,7 +30,11 @@ app.use(express.json());
 // NOTE add URL for front end when launched
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:3000',
+      'https://members-only-client.vercel.app',
+    ],
     methods: ['POST', 'GET', 'DELETE', 'PUT', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
